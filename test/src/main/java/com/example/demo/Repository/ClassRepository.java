@@ -8,7 +8,7 @@ import com.example.demo.dto.ClassWithTeacher;
 
 public interface ClassRepository extends JpaRepository<Class, Long> {
 	
-	@Query(value="select * from teacher_table,class_table where class_table.appointed_tchr = ?1")
+	@Query(value="select * from teacher_table,class_table where class_table.appointed_tchr = ?",nativeQuery = true)
 	public ClassWithTeacher findByAppointed_tchr(Long id);
 	
 }

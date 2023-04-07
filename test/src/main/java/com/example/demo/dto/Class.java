@@ -27,8 +27,9 @@ public class Class {
 	@JoinColumn(name="appointed_tchr")
 	private Teacher tchr;
 	
-	@ManyToMany
-	private List<Student> student_list = new ArrayList<>();
+	@ManyToOne
+	@JoinColumn(name="student_id_associated_class")
+	private Student student;
 
 	public long getCls_id() {
 		return cls_id;
@@ -54,12 +55,12 @@ public class Class {
 		this.tchr = tchr;
 	}
 
-	public List<Student> getStudent_list() {
-		return student_list;
+	public Student getStudent() {
+		return student;
 	}
 
-	public void setStudent_list(List<Student> student_list) {
-		this.student_list = student_list;
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 
 	public Class() {
