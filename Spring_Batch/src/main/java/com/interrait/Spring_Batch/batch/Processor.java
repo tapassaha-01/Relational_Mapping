@@ -1,4 +1,4 @@
-package com.interraIT.batchDemo.batch;
+package com.interrait.Spring_Batch.batch;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,15 +6,16 @@ import java.util.Map;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
-import com.interraIT.batchDemo.Model.Employee;
-import com.interraIT.batchDemo.Model.EmployeeEntity;
+import com.interrait.Spring_Batch.Model.Employee;
+import com.interrait.Spring_Batch.Model.EmployeeEntity;
+
 
 @Component
 public class Processor implements ItemProcessor<Employee, EmployeeEntity> {
 
  	private static final Map<String, Long> SALARY_VALUE=new HashMap<String,Long>();
 	
- 	public Processor() {
+ 	private Processor() {
  		SALARY_VALUE.put("A", 60000L);
  		SALARY_VALUE.put("B", 45000L);
  		SALARY_VALUE.put("C", 25000L);

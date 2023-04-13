@@ -31,14 +31,17 @@ import com.interraIT.batchDemo.batch.DbWriter;
 
 
 @Configuration
+@EnableBatchProcessing
 public class SpringBatchConfig {
+	
+	
 		
 	@Bean
 	public Job job(JobBuilderFactory jobBuilder,
 			StepBuilderFactory stepBuilder,
 			ItemReader<Employee> itemReader,
 			ItemProcessor<Employee, EmployeeEntity> itemProcessor,
-			ItemWriter<EmployeeEntity> itemWriter,UserRepo userepo) {
+			ItemWriter<EmployeeEntity> itemWriter) {
 		
 		Step step= stepBuilder.get("Emp-file-load")
 				.<Employee,EmployeeEntity>chunk(50) //50 is the batch size

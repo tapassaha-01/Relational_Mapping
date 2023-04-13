@@ -1,13 +1,10 @@
 package com.interraIT.batchDemo.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+
 
 import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.Job;
-//import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobExecution;
-import org.springframework.batch.core.JobParameter;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersInvalidException;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -25,10 +22,11 @@ import com.interraIT.batchDemo.config.SpringBatchConfig;
 @RestController
 @RequestMapping("/load")
 public class LoadController {
+
+	
 	
 	@Autowired
 	Job job;
-	
 	@Autowired
 	JobLauncher jobLauncher;
 	
