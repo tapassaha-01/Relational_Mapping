@@ -3,6 +3,8 @@ package com.interraIT.batchDemo.config;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 //import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 //import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -28,28 +30,24 @@ import com.interraIT.batchDemo.Repository.UserRepo;
 import com.interraIT.batchDemo.batch.DbWriter;
 
 
-
-
 @Configuration
-@EnableBatchProcessing
 public class SpringBatchConfig {
-	
-
+		
 	@Bean
-	public Job job(JobBuilder jobBuilder,
-			StepBuilder stepBuilder,
+	public Job job(JobBuilderFactory jobBuilder,
+			StepBuilderFactory stepBuilder,
 			ItemReader<Employee> itemReader,
 			ItemProcessor<Employee, EmployeeEntity> itemProcessor,
 			ItemWriter<EmployeeEntity> itemWriter,UserRepo userepo) {
 		
-		Step step= stepBuilder("Emp-file-load")
+		Step step= stepBuilder.get("Emp-file-load")
 				.<Employee,EmployeeEntity>chunk(50) //50 is the batch size
 				.reader(itemReader)
 				.processor(itemProcessor)
 				.writer(itemWriter)
 				.build();
 		
-		return JobBuilder("Emp-Load",userepo)
+		return jobBuilder.get("Emp-Load")
 		.incrementer(new RunIdIncrementer())
 		.start(step)
 		.build();

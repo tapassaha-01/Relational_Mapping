@@ -1,5 +1,5 @@
-package com.interraIT.batchDemo.Model;
-	
+package com.interrait.Spring_Batch.Model;
+
 public class Employee{
 	private long id;
 	private String name;
